@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <mis-precios 
+      :cantidad="cantidad" 
+      :precio_unitario="precio_unitario"
+      @guardar="guardar"
+      
+    ></mis-precios>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MisPrecios from './components/MisPrecios.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    MisPrecios
+  },
+  
+
+  data() {
+    return {
+      cantidad:0,
+      precio_unitario:0,
+    }
+  },//fin de data
+
+  methods: {
+    guardar(payload){
+      this.cantidad=parseFloat(payload.cantidad);
+      this.precio_unitario=parseFloat(payload.precio_unitario);
+    }
+  },
+
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
